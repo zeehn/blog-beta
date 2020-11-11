@@ -1,5 +1,12 @@
 <h1>Edit <%= @article.title %></h1>
-
+<% if @article.errors.any? %>
+<h4>These errors prevented article from getting saved!</h4>
+<ul>
+  <% @article.errors.full_messages.each do |err_message| %>
+  <li><%= err_message %></li>
+  <% end %>
+</ul>
+<% end %>
 <%= form_with model: @article, local: true do |f| %>
 <p>
   <%= f.label :title %><br />
@@ -12,3 +19,5 @@
 
 <%= f.submit  %>
 <% end %>
+
+<p><%= link_to "Go back", articles_path %></p>

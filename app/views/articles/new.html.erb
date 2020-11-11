@@ -1,5 +1,4 @@
 <h1>Create a new article</h1>
-
 <% if @article.errors.any? %>
 <h4>These errors prevented article from getting saved!</h4>
 <ul>
@@ -8,11 +7,6 @@
   <% end %>
 </ul>
 <% end %>
-<p>
-<ul>
-
-</ul>
-</p>
 <%= form_with model: @article, local: true do |f| %>
 <p>
   <%= f.label :title %><br />
