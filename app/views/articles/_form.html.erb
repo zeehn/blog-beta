@@ -1,0 +1,22 @@
+<% if @article.errors.any? %>
+<h4>These errors prevented article from getting saved!</h4>
+<ul>
+  <% @article.errors.full_messages.each do |err_message| %>
+  <li><%= err_message %></li>
+  <% end %>
+</ul>
+<% end %>
+<%= form_with model: @article, local: true do |f| %>
+<p>
+  <%= f.label :title %><br />
+  <%= f.text_field :title %>
+</p>
+<p>
+  <%= f.label :description %><br />
+  <%= f.text_area :description, size: "60x12" %>
+</p>
+
+<%= f.submit  %>
+<% end %>
+
+<p><%= link_to "Go back", articles_path %></p>

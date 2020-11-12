@@ -10,9 +10,7 @@
 </head>
 
 <body>
-  <% flash.each do |k, v| %>
-  <p><%= v %></p>
-  <% end %>
+  <%= render 'layouts/notice' %>
   <%= yield %>
 </body>
 
