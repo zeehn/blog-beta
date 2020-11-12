@@ -1,22 +1,13 @@
-<% if @article.errors.any? %>
-<h4>These errors prevented article from getting saved!</h4>
-<ul>
-  <% @article.errors.full_messages.each do |err_message| %>
-  <li><%= err_message %></li>
-  <% end %>
-</ul>
-<% end %>
+<%= render 'errors' %>
 
-<div class="row">
+<div class="row mt-2">
   <div class="col-md-8 col offset-2">
     <%= form_with model: @article, local: true do |f| %>
     <div class="form-group">
-      <%= f.label :title %><br />
-      <%= f.text_field :title, class: 'form-control' %>
+      <%= f.text_field :title, class: 'form-control', placeholder: "Article Title" %>
     </div>
     <div class="form-group">
-      <%= f.label :description %><br />
-      <%= f.text_area :description, size: "60x12", class: 'form-control' %>
+      <%= f.text_area :description, size: "60x12", class: 'form-control', placeholder: "Description" %>
     </div>
 
     <div class="form-group">

@@ -1,0 +1,16 @@
+<% if @article.errors.any? %>
+<div class="row">
+  <div class="col-md-8 col offset-2">
+    <div class="card" style="color: red;">
+      <div class="card-body">
+        <h4>These errors prevented article from getting saved!</h4>
+        <ul>
+          <% @article.errors.full_messages.each do |err_message| %>
+          <li><%= err_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
