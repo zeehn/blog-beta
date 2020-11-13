@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update]
+  before_action :require_login, except: [:index, :show]
+  before_action :require_owner, only: [:edit, :update]
+
   def index
     @users = User.paginate(page: params[:page], per_page: 5)
   end
@@ -41,5 +44,12 @@ class UsersController < ApplicationController
 
   def set_user 
     @user = User.find(params[:id])
+  end
+
+  def require_owner
+    if @user != current_user
+      flash[:danger] = "You are not authorized to perform this operation"
+      redirect_to users_path
+    end
   end
 end
