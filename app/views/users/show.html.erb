@@ -1,4 +1,4 @@
-<h2 class="text-center">Welcome to <%= @user.username.capitalize %>'s page</h2>
+<h2 class="text-center">Welcome to <%= @user.username.capitalize if @user %>'s page</h2>
 
 <div class="text-center mt-3 mb-3">
   <%= image_tag @user.gravatar_url, :class => "gravatar"  %>
