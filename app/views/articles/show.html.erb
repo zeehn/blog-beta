@@ -1,10 +1,20 @@
 <div class="row">
   <div class="col col-md-8 offset-2">
     <div class="card" style="background-color: #eee;">
-      <div class="card-header text-center">
-        <h3><%= @article.title %></h3>
+      <% if @article.user %>
+      <div class="text-center mt-3 mb-3">
+        <%= image_tag @article.user.gravatar_url, :class => "gravatar"   %>
       </div>
+      <div class="text-center">
+        <h5 class="card-title"><%= link_to @article.user.username, user_path(@article.user) %></h5>
+        <p class="card-text">
+          <%= pluralize_count(@article.user.articles.count) %>
+        </p>
+      </div>
+      <hr>
+      <% end %>
       <div class="card-body">
+        <h2 class="mb-3"><%= @article.title %></h2>
         <%= simple_format(@article.description) %>
       </div>
       <div class="article-actions m-3 pt-1">

@@ -1,0 +1,19 @@
+<h3 class="text-center">All Tech Bloggers</h3>
+
+<% @users.each do |user| %>
+<div class="row mb-2 text-center">
+  <div class="col-md-6 col offset-3">
+    <div class="card" style="background-color: #eee;">
+      <div class="card-body">
+        <div class="text-center mt-3 mb-3">
+          <%= image_tag user.gravatar_url, :class => "gravatar"  %>
+        </div>
+        <h5 class="card-title"><%= link_to user.username, user_path(user) %></h5>
+        <p class="card-text">
+          <%= pluralize_count(user.articles.count) %>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
