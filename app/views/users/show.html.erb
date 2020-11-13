@@ -1,0 +1,31 @@
+<h2 class="text-center">Welcome to <%= @user.username.capitalize %>'s page</h2>
+
+<div class="text-center mt-3 mb-3">
+  <%= image_tag @user.gravatar_url, :class => "gravatar"  %>
+</div>
+
+<h4 class="text-center"><%= @user.username.capitalize %>'s Articles </h4>
+<% @user.articles.each do |article| %>
+<div class="row mb-2">
+  <div class="col-md-8 col offset-2">
+    <div class="card" style="background-color: #eee;">
+      <div class="card-body">
+        <h5 class="card-title"><%= link_to article.title, article_path(article) %></h5>
+        <p class="card-text">
+          <%= truncate(article.description, length: 100) %>
+        </p>
+        <div class="article-metadata">
+          <i><small>Created by: <%= article.user.username if article.user %> / Created: <%= time_ago_in_words(article.created_at) %> ago /
+              Last updated:
+              <%= time_ago_in_words(article.updated_at) %>
+              ago </small></i>
+        </div>
+        <div class="article-actions pt-1">
+          <%= link_to "Edit this article", edit_article_path(article), class: "btn-sm btn-primary" %>
+          <%= link_to "Delete this article", article_path(article), method: :delete, data: { confirm: "are you sure?" }, class: "btn-danger btn-sm" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
