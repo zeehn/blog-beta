@@ -17,9 +17,12 @@
         <h2 class="mb-3"><%= @article.title %></h2>
         <%= simple_format(@article.description) %>
       </div>
+
       <div class="article-actions m-3 pt-1">
+        <% if logged_in? && current_user == @article.user %>
         <%= link_to "Edit this article", edit_article_path(@article), class: "btn-sm btn-primary" %>
         <%= link_to "Delete this article", article_path(@article), method: :delete, data: { confirm: "are you sure?" }, class: "btn-danger btn-sm" %>
+        <% end %>
         <%= link_to "View all articles", articles_path, class: "btn-sm btn-success" %>
       </div>
     </div>
