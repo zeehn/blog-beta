@@ -54,7 +54,7 @@ class ArticlesController < ApplicationController
   end
 
   def require_owner
-    if @article.user != current_user
+    if @article.user != current_user and !current_user.admin?
       flash[:danger] = "You are not authorized to perform this operation"
       redirect_to articles_path
     end
