@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update]
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :require_login, except: [:index, :show, :new, :create]
   before_action :require_owner, only: [:edit, :update]
+  before_action :require_admin, only: [:destroy]
 
   def index
     @users = User.paginate(page: params[:page], per_page: 5)
@@ -37,6 +38,13 @@ class UsersController < ApplicationController
   def show
   end
 
+  def destroy
+    if @user.destroy
+      flash[:danger] = "User and all items created by that user are deleted."
+      redirect_to users_path 
+    end
+  end
+
   private
   def user_params
     params.require(:user).permit(:username, :email, :password)
@@ -47,9 +55,16 @@ class UsersController < ApplicationController
   end
 
   def require_owner
-    if @user != current_user
+    if @user != current_user and !current_user.admin? 
       flash[:danger] = "You are not authorized to perform this operation"
       redirect_to users_path
+    end
+  end
+
+  def require_admin
+    if logged_in? and !current_user.admin?
+      flash[:danger] = "You are not authorized to perform this operation."
+      redirect_to users_path 
     end
   end
 end

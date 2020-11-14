@@ -16,6 +16,11 @@
         <p class="card-text">
           <%= pluralize_count(user.articles.count) %>
         </p>
+        <% if logged_in? and current_user.admin? %>
+        <p>
+          <%= link_to "Delete User", user_path(user), method: :delete, data: { confirm: "Data related to user will be deleted too." }, class: 'btn btn-danger btn-sm' %>
+        </p>
+        <% end %>
       </div>
     </div>
   </div>
