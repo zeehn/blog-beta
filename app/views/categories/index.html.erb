@@ -10,12 +10,13 @@
     <div class="card" style="background-color: #eee;">
       <div class="card-body">
 
-        <h5 class="card-title"><%= link_to category.name, category_path(category) %></h5>
-        <% if logged_in? and current_user.admin? %>
-        <p>
-          <%= link_to "Delete Category", category_path(category), method: :delete, data: { confirm: "Data related to category will be deleted too." }, class: 'btn btn-danger btn-sm' %>
-        </p>
-        <% end %>
+        <h3 class="card-title"><%= link_to category.name, category_path(category) %></h5>
+          <h5><%= pluralize_count(category.articles.count) %></h5>
+          <% if logged_in? and current_user.admin? %>
+          <p>
+            <%= link_to "Delete Category", category_path(category), method: :delete, data: { confirm: "Data related to category will be deleted too." }, class: 'btn btn-danger btn-sm' %>
+          </p>
+          <% end %>
       </div>
     </div>
   </div>

@@ -11,6 +11,13 @@
     </div>
 
     <div class="form-group">
+      <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |b| %>
+      <% b.label(class: "checkbox mr-4 p-2") { b.check_box(class: "checkbox") + " " + b.text } %>
+      <% end %>
+    </div>
+
+
+    <div class="form-group ">
       <%= f.submit class: 'btn btn-info'  %>
       <%= link_to "Cancel", articles_path, class: 'btn btn-danger'  %>
     </div>

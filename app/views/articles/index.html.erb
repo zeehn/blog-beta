@@ -11,6 +11,9 @@
         <h5 class="card-title"><%= link_to article.title, article_path(article) %></h5>
         <p class="card-text">
           <%= truncate(article.description, length: 100) %>
+          <% if article.categories.any? %>
+        <p>Categories: <%= render article.categories %></p>
+        <% end %>
         </p>
         <div class="article-metadata">
           <i><small>Created by: <%= article.user.username if article.user %> / Created: <%= time_ago_in_words(article.created_at) %> ago /

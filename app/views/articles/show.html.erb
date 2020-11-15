@@ -16,6 +16,9 @@
       <div class="card-body">
         <h2 class="mb-3"><%= @article.title %></h2>
         <%= simple_format(@article.description) %>
+        <% if @article.categories.any? %>
+        <p>Categories: <%= render @article.categories %></p>
+        <% end %>
       </div>
 
       <div class="article-actions m-3 pt-1">
