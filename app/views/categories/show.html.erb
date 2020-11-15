@@ -3,9 +3,15 @@
 <div class="center mt-4 mb-3">
   <%= will_paginate @articles %>
 </div>
+
 <% @articles.each do |article| %>
 <div class="row mb-2">
   <div class="col-md-8 col offset-2">
+    <% if logged_in? and current_user.admin? %>
+    <div class="badge badge-primary badge-custom">
+      <%= link_to "EDIT CATEGORY", edit_category_path(@category) %>
+    </div>
+    <% end %>
     <div class="card" style="background-color: #eee;">
       <div class="card-body">
         <h5 class="card-title"><%= link_to article.title, article_path(article) %></h5>
