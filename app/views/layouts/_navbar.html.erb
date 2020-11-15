@@ -21,9 +21,12 @@
           <% Category.all.each do |category| %>
           <%= link_to "#{category.name}", category_path(category), class: 'dropdown-item' %>
           <% end %>
+          <% if current_user.admin? %>
           <div class="dropdown-divider"></div>
-          <%= link_to "Create New", new_article_path, class: 'dropdown-item' %>
+          <%= link_to "Create New", new_category_path, class: 'dropdown-item' %>
+          <% end %>
         </div>
+
 
       </li>
       <% if logged_in? %>
